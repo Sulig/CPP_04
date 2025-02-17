@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:57:40 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/17 16:52:46 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:30:32 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/Animal.hpp"
+#include "inc/WrongAnimal.hpp"
 
 /* Constructor & destructor */
-Animal::Animal()
+WrongAnimal::WrongAnimal()
 {
-	std::cout << "Animal, base class default constructor called" << std::endl;
-	this->type = "Animal";
+	std::cout << "WrongAnimal, base class default constructor called" << std::endl;
+	this->type = "WrongAnimal";
 	return ;
 }
-Animal::Animal(std::string type)
+WrongAnimal::WrongAnimal(std::string type)
 {
-	std::cout << "Animal base class type constructor called" << std::endl;
+	std::cout << "WrongAnimal base class type constructor called" << std::endl;
 	this->type = type;
 	return ;
 }
-Animal::Animal(const Animal &copy)
+WrongAnimal::WrongAnimal(const WrongAnimal &copy)
 {
-	std::cout << "Animal base class copy constructor called" << std::endl;
+	std::cout << "WrongAnimal base class copy constructor called" << std::endl;
 	*this = copy;
 	return ;
 }
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Animal base class destructor called" << std::endl;
+	std::cout << "WrongAnimal base class destructor called" << std::endl;
 	return ;
 }
 /* ----- */
 
 /* Operator */
-Animal	&Animal::operator=(const Animal &other)
+WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &other)
 {
-	std::cout << "Animal base class assignation operator called" << std::endl;
+	std::cout << "WrongAnimal base class assignation operator called" << std::endl;
 	if (this != &other)
 		this->type = other.type;
 	return (*this);
@@ -49,11 +49,11 @@ Animal	&Animal::operator=(const Animal &other)
 /* ----- */
 
 /* Get */
-std::string	Animal::getType() const {	return (this->type); }
+std::string	WrongAnimal::getType() const {	return (this->type); }
 /* --- */
 
 /* Member function */
-void	Animal::makeSound() const
+void	WrongAnimal::makeSound() const
 {
 	std::cout << "*Undefined type of noise*" << std::endl;
 }

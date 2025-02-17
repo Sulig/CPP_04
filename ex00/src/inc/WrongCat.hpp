@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 19:58:02 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/17 19:50:40 by sadoming         ###   ########.fr       */
+/*   Created: 2025/02/17 19:23:31 by sadoming          #+#    #+#             */
+/*   Updated: 2025/02/17 19:37:36 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include <iostream>
-# include <string>
+# include "WrongAnimal.hpp"
 
-class	Animal
+/* Incorrect inheritance */
+class	WrongCat : public WrongAnimal
 {
 	public:
-		Animal();
-		Animal(std::string type);
-		Animal(const Animal &copy);
-		virtual	~Animal();
+		WrongCat();
+		WrongCat(const WrongCat &copy);
+		~WrongCat();
 
-		Animal	&operator=(const Animal &other);
+		WrongCat	&operator=(const WrongCat &other);
 
-		std::string	getType() const;
-
-		virtual void	makeSound() const;
-
-	protected:
-		std::string	type;
+		void	makeSound() const;
 };
 
 #endif
