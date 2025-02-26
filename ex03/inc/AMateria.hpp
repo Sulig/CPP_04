@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:51:00 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/19 17:54:10 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:55:20 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 class AMateria
 {
+	protected:
+		std::string	_type;
+
 	public:
 		AMateria(void);
 		AMateria(std::string const & type);
@@ -32,9 +35,6 @@ class AMateria
 
 		virtual AMateria*	clone() const = 0;
 		virtual void		use(ICharacter& target);
-
-	protected:
-		std::string	_type;
 };
 
 #endif

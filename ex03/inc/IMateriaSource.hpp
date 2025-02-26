@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateria.hpp                                       :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 17:51:58 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/19 17:53:18 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:48:15 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMATERIA_HPP
 # define IMATERIA_HPP
 
-# include "AMateria.hpp"
+# include <string>
+
+class AMateria;
 
 class IMateriaSource
 {
