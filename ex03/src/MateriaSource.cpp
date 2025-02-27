@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:48:02 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 13:46:00 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:38:12 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ MateriaSource::~MateriaSource()
 	for (int i = 0; i < MS_MAX_SLOTS; i++)
 	{
 		if (_materias[i])
-			delete (_materias[i]);
+			delete _materias[i];
+		_materias[i] = NULL;
 	}
 	return ;
 }
@@ -46,11 +47,22 @@ MateriaSource	&MateriaSource::operator=(const MateriaSource &other)
 	if (this != &other)
 	{
 		this->_slots = other._slots;
-		for (int i = 0; i < MS_MAX_SLOTS; i++)
+		if (other._materias)
 		{
-			if (_materias[i])
-				delete (_materias[i]);
-			_materias[i] = other._materias[i]->clone();
+			for (int i = 0; i < MS_MAX_SLOTS; i++)
+			{
+				if (_materias[i])
+					delete (_materias[i]);
+				if (other._materias[i])
+					_materias[i] = other._materias[i]->clone();
+				else
+					_materias[i] = NULL;
+			}
+		}
+		else
+		{
+			for (int i = 0; i < MS_MAX_SLOTS; i++)
+				_materias[i] = NULL;
 		}
 	}
 	return (*this);

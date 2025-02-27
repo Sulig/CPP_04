@@ -28,11 +28,7 @@ Cure	&Cure::operator=(const Cure &other)
 /* ----- */
 
 /* Member functions */
-AMateria*	Cure::clone() const
-{
-	AMateria	*clone = new Cure(*this);
-	return (clone);
-}
+AMateria*	Cure::clone() const	{ return (new Cure(*this)); }
 
 void		Cure::use(ICharacter& target)
 {

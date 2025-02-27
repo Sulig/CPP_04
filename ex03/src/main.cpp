@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:55:28 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 14:03:12 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:38:23 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	my_tests(void)
 {
 	std::cout << "----------- My tests: -----------------" << std::endl;
 
-	AMateria*		ground[666];
 	MateriaSource*	cast = new MateriaSource();
 
 	Character*		fabMag = new Character("Faboluous Magician");
@@ -69,21 +68,33 @@ void	my_tests(void)
 	cast->learnMateria(iceCl);
 	cast->learnMateria(cureCl);
 
-	// Cast materia in the ground
-	ground[0] = cast->createMateria("fire"); //** This will return NULL */
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << "i: " << i << "||- ";
-		if (i % 2 == 0)
-			ground[i] = cast->createMateria("ice");
-		else
-			ground[i] = cast->createMateria("cure");
-	}
-
 	// Equip materia
 	fabMag->equip(NULL);
 	for (int i = 0; i < 5; i++)
-			fabMag->equip(ground[i]);
+	{
+		AMateria* tmp = NULL;
+		if (i % 2 == 0)
+			tmp = cast->createMateria("ice");
+		else
+			tmp = cast->createMateria("cure");
+
+		if (tmp)
+		{
+			fabMag->equip(tmp);
+			// If equip failed (inventory full), delete tmp
+			bool equipped = false;
+			for (int j = 0; j < CH_MAX_SLOTS; j++)
+			{
+				if (fabMag->getMateriaAt(j) == tmp)
+				{
+					equipped = true;
+					break;
+				}
+			}
+			if (!equipped)
+				delete tmp;
+		}
+	}
 
 	// Use materia
 	for (int i = 0; i < 5; i++)
@@ -104,10 +115,6 @@ void	my_tests(void)
 	delete cast;
 	delete fabMag;
 	delete trnMan;
-
-	for (int i = 0; i < 666; i++)
-		if (ground[i])
-			delete ground[i];
 
 	std::cout << "*************" << std::endl;
 }

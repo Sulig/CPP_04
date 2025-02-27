@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:59:18 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 13:43:03 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:35:55 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class Character : public ICharacter
 	private:
 		std::string	_name;
 		AMateria	*_inventory[CH_MAX_SLOTS];
-		int			_slots;
+		AMateria**	_ground;
+
+		void	addToGround(AMateria *m);
 
 	public:
 		Character();
@@ -37,6 +39,7 @@ class Character : public ICharacter
 		AMateria	*getMateriaAt(int idx) const;
 		std::string const & getName() const;
 
+		bool	isInventoryFull(void) const;
 		void	equip(AMateria* m);
 		void	unequip(int idx);
 		void	use(int idx, ICharacter& target);

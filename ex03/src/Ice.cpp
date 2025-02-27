@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:52:39 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 13:26:25 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:02:50 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ Ice	&Ice::operator=(const Ice &other)
 /* ----- */
 
 /* Member functions */
-AMateria*	Ice::clone() const
-{
-	AMateria	*clone = new Ice(*this);
-	return (clone);
-}
+AMateria*	Ice::clone() const	{ return (new Ice(*this)); }
 
 void		Ice::use(ICharacter& target)
 {

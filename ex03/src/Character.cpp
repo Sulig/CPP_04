@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:50:54 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 13:54:38 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:38:12 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Character::Character()
 {
 	std::cout << "Character default constructor called" << std::endl;
 	this->_name = "";
-	this->_slots = 0;
+	this->_ground = NULL;
 	for (int i = 0; i < CH_MAX_SLOTS; i++)
 		_inventory[i] = NULL;
 	return ;
@@ -26,7 +26,7 @@ Character::Character(std::string const & name)
 {
 	std::cout << "Character parameter constructor called" << std::endl;
 	this->_name = name;
-	this->_slots = 0;
+	this->_ground = NULL;
 	for (int i = 0; i < CH_MAX_SLOTS; i++)
 		_inventory[i] = NULL;
 	return ;
@@ -44,6 +44,17 @@ Character::~Character()
 	{
 		if (_inventory[i])
 			delete (_inventory[i]);
+		_inventory[i] = NULL;
+	}
+
+	if (this->_ground)
+	{
+		for (int i = 0; this->_ground[i]; i++) {
+			delete this->_ground[i];
+			this->_ground[i] = NULL;
+		}
+		delete[] this->_ground;
+		this->_ground = NULL;
 	}
 	return ;
 }
@@ -56,12 +67,32 @@ Character	&Character::operator=(const Character &other)
 	if (this != &other)
 	{
 		this->_name = other._name;
-		this->_slots = other._slots;
-		for (int i = 0; i < CH_MAX_SLOTS; i++)
+		if (other._inventory)
 		{
-			if (_inventory[i])
-				delete (_inventory[i]);
-			_inventory[i] = other._inventory[i]->clone();
+			for (int i = 0; i < CH_MAX_SLOTS; i++)
+			{
+				if (_inventory[i])
+					delete (_inventory[i]);
+				if (other._inventory[i])
+					_inventory[i] = other._inventory[i]->clone();
+				else
+					_inventory[i] = NULL;
+			}
+		}
+		else
+		{
+			for (int i = 0; i < CH_MAX_SLOTS; i++)
+				_inventory[i] = NULL;
+		}
+		if (this->_ground)
+		{
+			int i = 0;
+			while (this->_ground[i])
+			{
+				delete this->_ground[i];
+				i++;
+			}
+			delete[] this->_ground;
 		}
 	}
 	return (*this);
@@ -80,6 +111,18 @@ std::string const & Character::getName() const	{ return (_name); }
 /* ----- */
 
 /* Member functions */
+
+/* Check if the inventory is full */
+bool	Character::isInventoryFull(void) const
+{
+	for (int i = 0; i < CH_MAX_SLOTS; i++)
+	{
+		if (_inventory[i] == NULL)
+			return (false);
+	}
+	return (true);
+}
+
 /* Equip Materia m to the Character
 ** If the inventory is full, do nothing
 */
@@ -92,20 +135,21 @@ void	Character::equip(AMateria* m)
 		std::cout << RESET;
 		return ;
 	}
-	else if (_slots < CH_MAX_SLOTS && m)
+
+	for (int i = 0; i < CH_MAX_SLOTS; i++)
 	{
-		std::cout << GREEN;
-		std::cout << "Equipping " << m->getType() << " to " << _name << " in position " << _slots << std::endl;
-		_inventory[_slots] = m;
-		_slots++;
-		std::cout << RESET;
+		if (_inventory[i] == NULL)
+		{
+			std::cout << GREEN;
+			std::cout << "Equipping " << m->getType() << " to " << _name << " in position " << i << std::endl;
+			_inventory[i] = m;
+			std::cout << RESET;
+			return ;
+		}
 	}
-	else
-	{
-		std::cout << RED;
-		std::cout << Character::getName() << " has the inventory full" << std::endl;
-		std::cout << RESET;
-	}
+	std::cout << RED;
+	std::cout << Character::getName() << " has the inventory full" << std::endl;
+	std::cout << RESET;
 }
 
 /* Unequip the Materia at idx (no delete)
@@ -120,8 +164,8 @@ void	Character::unequip(int idx)
 		{
 			std::cout << BLUE;
 			std::cout << "Unequipping " << _inventory[idx]->getType() << " from " << _name << " in position " << idx << std::endl;
+			addToGround(_inventory[idx]);
 			_inventory[idx] = NULL;
-			_slots--;
 			std::cout << RESET;
 		}
 		else
@@ -160,6 +204,40 @@ void	Character::use(int idx, ICharacter& target)
 		std::cout << RED;
 		std::cout << "Index out of bounds for " << Character::getName() << std::endl;
 		std::cout << RESET;
+	}
+}
+/* ----- */
+
+/* Utilities */
+void	Character::addToGround(AMateria *m)
+{
+	if (this->_ground == NULL)
+	{
+		this->_ground = new AMateria*[2];
+		this->_ground[0] = m;
+		this->_ground[1] = NULL;
+		return ;
+	}
+	else
+	{
+		AMateria**	tmp;
+		int i = 0;
+
+		// Lenght of the array ground
+		while (this->_ground[i])
+			i++;
+
+		tmp = NULL;
+		tmp = new AMateria*[i + 2];
+
+		for (int j = 0; j < i; j++)
+			tmp[j] = this->_ground[j];
+		tmp[i] = m;
+		tmp[i + 1] = NULL;
+
+		delete[] this->_ground;
+
+		this->_ground = tmp;
 	}
 }
 /* ----- */
