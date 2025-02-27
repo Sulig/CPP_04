@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:57:49 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/18 17:58:58 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:11:56 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@
 /* My tests */
 void	my_tests(void)
 {
-	const	AAnimal*	j = new Dog();
-	const	AAnimal*	i = new Cat();
+	AAnimal*	j = new Dog();
+	Dog*		jj = new Dog(*(Dog*)j);
+	AAnimal*	jjj = j;
 
-	const	WrongAnimal	k = WrongAnimal();
-	const	WrongAnimal	l = WrongCat();
+	AAnimal*	i = new Cat();
+	Cat*		ii = new Cat(*(Cat*)i);
+	AAnimal*	iii = i;
+
+	WrongAnimal	k = WrongAnimal();
+	WrongAnimal	l = WrongCat();
+	WrongAnimal	pp = l;
 
 	std::cout << " Correct classes " << std::endl;
 	std::cout << j->getType() << " " << std::endl;
@@ -36,13 +42,29 @@ void	my_tests(void)
 	std::cout << k.getType() << " " << std::endl;
 	k.makeSound();
 	std::cout << l.getType() << " " << std::endl;
-	l.makeSound(); // Will print Wrong Animal output
+	l.makeSound(); // Will print Wrong AAnimal output
 
+	std::cout << "\n Copy constructors " << std::endl;
+	std::cout << jj->getType() << " " << std::endl;
+	jj->makeSound();
+	std::cout << ii->getType() << " " << std::endl;
+	ii->makeSound();
+
+	std::cout << "\n Pointers to the same object " << std::endl;
+	jjj->makeSound();
+	iii->makeSound();
+	pp.makeSound();
+
+	// Delete all objects
 	delete j;
-	delete i;
-}
+	delete jj;
 
-void	variousAnimals()
+	delete i;
+	delete ii;
+}
+/*---------*/
+
+void	variousAAnimals()
 {
 	const	AAnimal*	meta[10];
 
@@ -70,16 +92,16 @@ int main()
 
 	// Various animals
 	std::cout << "\nVarious animals:" << std::endl;
-	variousAnimals();
+	variousAAnimals();
 	//** */
 
 	/// Incorrect --> Abstact class
 	/*
 	* On uncommented, the following code will not compile
-	* bcs "Animal" is an abstract class
+	* bcs "AAnimal" is an abstract class
 	*/
 	/*
-	const AAnimal *animal = new AAnimal();
+	const AAAnimal *animal = new AAAnimal();
 	animal->makeSound();
 	delete animal;
 	*/
