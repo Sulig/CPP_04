@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:50:45 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/26 19:30:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:38:22 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ std::string const & AMateria::getType() const { return (_type); }
 /* Member functions */
 /// virtual AMateria*	clone() const = 0;
 
-/// virtual void		use(ICharacter& target);
+void	AMateria::use(ICharacter &target)
+{
+	std::cout << "Using " << _type << " on " << target.getName() << std::endl;
+}
 /* ----- */

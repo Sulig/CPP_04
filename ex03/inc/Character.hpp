@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:59:18 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/26 20:00:20 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:18:20 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # include "ICharacter.hpp"
 # include "AMateria.hpp"
 
+# define CH_MAX_SLOTS	4
+
 class Character : public ICharacter
 {
 	private:
 		std::string	_name;
-		AMateria	*_materias[4];
-		int			_index;
+		AMateria	*_inventory[CH_MAX_SLOTS];
+		int			_slots;
 
 	public:
 		Character();
@@ -31,6 +33,7 @@ class Character : public ICharacter
 
 		Character	&operator=(const Character &other);
 
+		AMateria	*getMateriaAt(int idx) const;
 		std::string const & getName() const;
 
 		void	equip(AMateria* m);

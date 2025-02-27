@@ -6,16 +6,21 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:55:28 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/19 17:50:22 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:43:40 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/ICharacter.hpp"
 #include "inc/AMateria.hpp"
+#include "inc/Character.hpp"
+#include "inc/Cure.hpp"
+#include "inc/Ice.hpp"
+#include "inc/MateriaSource.hpp"
 
 /* Test from subject */
 void	test_from_subject(void)
 {
+	std::cout << "Test from subject:" << std::endl;
+
 	IMateriaSource*	src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
@@ -36,8 +41,21 @@ void	test_from_subject(void)
 	delete bob;
 	delete me;
 	delete src;
+
+	std::cout << "*************" << std::endl;
 }
 /*------------*/
+
+/* My tests */
+void	my_tests(void)
+{
+	std::cout << "My tests:" << std::endl;
+
+	///code here
+
+	std::cout << "*************" << std::endl;
+}
+/*---------*/
 
 int	main()
 {
@@ -47,7 +65,7 @@ int	main()
 
 	// My tests
 	std::cout << "\nMy tests:" << std::endl;
-	//my_tests();
+	my_tests();
 	//** */
 	return 0;
 }

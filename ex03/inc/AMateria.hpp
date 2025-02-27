@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:51:00 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/26 18:55:20 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:36:05 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include <string>
 
-# include "ICharacter.hpp"
+# include "Character.hpp"
 
 class AMateria
 {

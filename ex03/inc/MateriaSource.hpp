@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:55:11 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/26 19:58:57 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:16:04 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include "AMateria.hpp"
 # include "IMateriaSource.hpp"
 
+# define MS_MAX_SLOTS	4
+
 class MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria	*_materias[4];
-		int			_index;
+		AMateria	*_materias[MS_MAX_SLOTS];
+		int			_slots;
 
 	public:
 		MateriaSource();
