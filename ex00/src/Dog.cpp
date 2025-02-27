@@ -6,20 +6,20 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:30:40 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/17 18:54:17 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:00:15 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/Dog.hpp"
 
 /* Constructor & destructor */
-Dog::Dog()
+Dog::Dog() : Animal()
 {
 	std::cout << "Dog default constructor called" << std::endl;
 	this->type = "Dog";
 	return ;
 }
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy) : Animal()
 {
 	std::cout << "Dog copy constructor called" << std::endl;
 	*this = copy;

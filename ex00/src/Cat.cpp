@@ -6,20 +6,20 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:30:57 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/26 17:29:46 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 20:00:08 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/Cat.hpp"
 
 /* Constructor & destructor */
-Cat::Cat()
+Cat::Cat() : Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	this->type = "Cat";
 	return ;
 }
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy) : Animal()
 {
 	std::cout << "Cat copy constructor called" << std::endl;
 	*this = copy;
