@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:49:18 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 11:40:36 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:18:34 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
 # include "AMateria.hpp"
 
-class Cure : public AMateria
+class Ice : public AMateria
 {
 	public:
-		Cure();
-		Cure(const Cure &copy);
-		~Cure();
+		Ice();
+		Ice(const Ice &copy);
+		~Ice();
 
-		Cure	&operator=(const Cure &other);
+		Ice	&operator=(const Ice &other);
 
 		AMateria*	clone() const;
 		void		use(ICharacter& target);

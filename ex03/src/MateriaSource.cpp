@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 11:48:02 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 12:17:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:46:00 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,25 @@ void	MateriaSource::learnMateria(AMateria *m)
 {
 	if (!m)
 	{
+		std::cout << YELLOW;
 		std::cout << "The pointer to Materia is NULL." << std::endl;
+		std::cout << RESET;
 		return ;
 	}
 	else if (_slots < 4 && m)
 	{
+		std::cout << BMAGENTA;
 		std::cout << "Learning " << m->getType() << " in position:" << _slots << std::endl;
 		_materias[_slots] = m;
 		_slots++;
+		std::cout << RESET;
 	}
 	else
+	{
+		std::cout << RED;
 		std::cout << "Inventory full" << std::endl;
+		std::cout << RESET;
+	}
 }
 
 /* Create Materia of type
@@ -87,11 +95,15 @@ AMateria	*MateriaSource::createMateria(std::string const & type)
 	{
 		if (_materias[i] && _materias[i]->getType() == type)
 		{
+			std::cout << BWHITE;
 			std::cout << "Creating " << type << std::endl;
+			std::cout << RESET;
 			return (_materias[i]->clone());
 		}
 	}
+	std::cout << RED;
 	std::cout << "Type is unknown" << std::endl;
+	std::cout << RESET;
 	return (NULL);
 }
 /* ----- */

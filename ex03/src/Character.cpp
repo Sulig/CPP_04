@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:50:54 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 12:18:17 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:54:38 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,25 @@ void	Character::equip(AMateria* m)
 {
 	if (!m)
 	{
+		std::cout << YELLOW;
 		std::cout << "The pointer to Materia is NULL." << std::endl;
+		std::cout << RESET;
 		return ;
 	}
 	else if (_slots < CH_MAX_SLOTS && m)
 	{
-		std::cout << "Equipping " << m->getType() << " to " << _name << " in position:" << _slots << std::endl;
+		std::cout << GREEN;
+		std::cout << "Equipping " << m->getType() << " to " << _name << " in position " << _slots << std::endl;
 		_inventory[_slots] = m;
 		_slots++;
+		std::cout << RESET;
 	}
 	else
-		std::cout << "Inventory full" << std::endl;
+	{
+		std::cout << RED;
+		std::cout << Character::getName() << " has the inventory full" << std::endl;
+		std::cout << RESET;
+	}
 }
 
 /* Unequip the Materia at idx (no delete)
@@ -110,15 +118,25 @@ void	Character::unequip(int idx)
 	{
 		if (_inventory[idx])
 		{
-			std::cout << "Unequipping " << _inventory[idx]->getType() << " from " << _name << "in position:" << idx << std::endl;
+			std::cout << BLUE;
+			std::cout << "Unequipping " << _inventory[idx]->getType() << " from " << _name << " in position " << idx << std::endl;
 			_inventory[idx] = NULL;
 			_slots--;
+			std::cout << RESET;
 		}
 		else
-			std::cout << "No materia at this index" << std::endl;
+		{
+			std::cout << YELLOW;
+			std::cout << Character::getName() << " has no materia at this index" << std::endl;
+			std::cout << RESET;
+		}
 	}
 	else
-		std::cout << "Index out of bounds" << std::endl;
+	{
+		std::cout << RED;
+		std::cout << "Index out of bounds for" << Character::getName() << std::endl;
+		std::cout << RESET;
+	}
 }
 
 /* Use the Materia at idx on target
@@ -129,15 +147,20 @@ void	Character::use(int idx, ICharacter& target)
 	if (idx >= 0 && idx < CH_MAX_SLOTS)
 	{
 		if (_inventory[idx])
-		{
-			std::cout << "Using " << _inventory[idx]->getType() << " on " << target.getName() << std::endl;
 			_inventory[idx]->use(target);
-		}
 		else
-			std::cout << "No materia at this index" << std::endl;
+		{
+			std::cout << YELLOW;
+			std::cout << Character::getName() << " has no materia at this index" << std::endl;
+			std::cout << RESET;
+		}
 	}
 	else
-		std::cout << "Index out of bounds" << std::endl;
+	{
+		std::cout << RED;
+		std::cout << "Index out of bounds for " << Character::getName() << std::endl;
+		std::cout << RESET;
+	}
 }
 /* ----- */
 /*#################################################*/

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 19:59:18 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 12:18:20 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:43:03 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ICharacter.hpp"
 # include "AMateria.hpp"
+# include "Colors.hpp"
 
 # define CH_MAX_SLOTS	4
 

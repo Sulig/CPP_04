@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 18:51:00 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 11:36:05 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:43:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 
 # include "Character.hpp"
+# include "Colors.hpp"
 
 class AMateria
 {

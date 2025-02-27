@@ -6,11 +6,11 @@
 #    By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/10 17:01:41 by sadoming          #+#    #+#              #
-#    Updated: 2025/02/18 18:05:05 by sadoming         ###   ########.fr        #
+#    Updated: 2025/02/27 13:16:49 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= Interface&Recap
+NAME	:= Interface_Recap
 # ------------------ #
 # Flags:
 
