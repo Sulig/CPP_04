@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:30:40 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 20:14:43 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:38:04 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Dog::~Dog()
 {
 	std::cout << "Dog destructor called" << std::endl;
 	delete this->brain;
+	this->brain = NULL;
 	return ;
 }
 /* ----- */
@@ -39,14 +40,18 @@ Dog	&Dog::operator=(const Dog &other)
 {
 	std::cout << "Dog assignation operator called" << std::endl;
 	if (this != &other)
+	{
+		if (this->brain)
+			delete this->brain;
+		this->brain = new Brain(*other.brain);
 		this->type = other.type;
+	}
 	return (*this);
 }
 /* ----- */
 
 /* Member function */
-void	Dog::makeSound() const
-{
-	std::cout << "Woof woof" << std::endl;
-}
+Brain*	Dog::getBrain() const { return (this->brain); }
+
+void	Dog::makeSound() const { std::cout << "Woof woof" << std::endl; }
 /* --- */

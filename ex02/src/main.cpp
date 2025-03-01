@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:57:49 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 20:11:56 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:38:05 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 /* My tests */
 void	my_tests(void)
 {
-	AAnimal*	j = new Dog();
-	Dog*		jj = new Dog(*(Dog*)j);
-	AAnimal*	jjj = j;
+	Dog*	j = new Dog();
+	Dog*	jj = new Dog(*(Dog*)j);
+	Dog*	jjj = j;
 
-	AAnimal*	i = new Cat();
-	Cat*		ii = new Cat(*(Cat*)i);
-	AAnimal*	iii = i;
+	Cat*	i = new Cat();
+	Cat*	ii = new Cat(*(Cat*)i);
+	Cat*	iii = i;
 
 	WrongAnimal	k = WrongAnimal();
 	WrongAnimal	l = WrongCat();
@@ -66,20 +66,27 @@ void	my_tests(void)
 
 void	variousAAnimals()
 {
-	const	AAnimal*	meta[10];
+	const	Cat*		cat[5];
+	const	Dog*		dog[5];
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		if (i % 2 == 0)
-			meta[i] = new Dog();
-		else
-			meta[i] = new Cat();
+		cat[i] = new Cat();
+		dog[i] = new Dog();
 	}
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		std::cout << meta[i]->getType() << " ";
-		meta[i]->makeSound();
-		delete meta[i];
+		std::cout << cat[i]->getType() << " ";
+		cat[i]->makeSound();
+		std::cout << dog[i]->getType() << " ";
+		dog[i]->makeSound();
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		delete cat[i];
+		cat[i] = NULL;
+		delete dog[i];
+		dog[i] = NULL;
 	}
 }
 /*---------*/
@@ -95,13 +102,36 @@ int main()
 	variousAAnimals();
 	//** */
 
+	std::cout << "*---------*" << std::endl;
+	std::cout << "Copy Demostration" << std::endl;
+	// Demostrate that copies are deep copies
+	Dog	dog;
+	Cat	cat;
+
+	dog.getBrain()->setIdea("I need to go out");
+	std::cout << "DOG's idea: ";
+	std::cout << dog.getBrain()->getIdea(0) << std::endl;
+
+	Dog	dog2 = dog;
+	std::cout << "DOG2's idea: ";
+	std::cout << dog2.getBrain()->getIdea(0);
+
+	cat.getBrain()->setIdea("It's 3:00 am. Time to play");
+	std::cout << "CAT's idea: ";
+	std::cout << cat.getBrain()->getIdea(0) << std::endl;
+
+	Cat	cat2 = cat;
+	std::cout << "CAT2's idea: ";
+	std::cout << cat2.getBrain()->getIdea(0);
+	std::cout << std::endl << "*---------*" << std::endl;
+	/*--*/
+
 	/// Incorrect --> Abstact class
-	/*
-	* On uncommented, the following code will not compile
-	* bcs "AAnimal" is an abstract class
+	/* On uncommented, the following code will not compile
+	*	bcs "AAnimal" is an abstract class
 	*/
 	/*
-	const AAAnimal *animal = new AAAnimal();
+	const AAnimal *animal = new AAnimal();
 	animal->makeSound();
 	delete animal;
 	*/
