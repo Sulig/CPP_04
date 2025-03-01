@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:10:32 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/18 17:16:30 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:37:48 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ class Brain
 
 		Brain	&operator=(const Brain &other);
 
+		void		setIdea(std::string idea);
+		std::string	getIdea(int index) const;
+
+	protected:
 		std::string	ideas[100];
 };
 

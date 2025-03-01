@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:57:49 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 20:06:57 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:37:32 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,29 @@ int main()
 	std::cout << "\nVarious animals:" << std::endl;
 	variousAnimals();
 	//** */
+
+	std::cout << "*---------*" << std::endl;
+	std::cout << "Copy Demostration" << std::endl;
+	// Demostrate that copies are deep copies
+	Dog	dog;
+	Cat	cat;
+
+	dog.getBrain()->setIdea("I need to go out");
+	std::cout << "DOG's idea: ";
+	std::cout << dog.getBrain()->getIdea(0) << std::endl;
+
+	Dog	dog2 = dog;
+	std::cout << "DOG2's idea: ";
+	std::cout << dog2.getBrain()->getIdea(0);
+
+	cat.getBrain()->setIdea("It's 3:00 am. Time to play");
+	std::cout << "CAT's idea: ";
+	std::cout << cat.getBrain()->getIdea(0) << std::endl;
+
+	Cat	cat2 = cat;
+	std::cout << "CAT2's idea: ";
+	std::cout << cat2.getBrain()->getIdea(0);
+	std::cout << std::endl << "*---------*" << std::endl;
+
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:30:57 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/27 20:07:07 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:37:28 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cat::Cat() : Animal()
 Cat::Cat(const Cat &copy) : Animal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
-	*this = copy;
+	this->brain = new Brain(*copy.brain);
 	return ;
 }
 Cat::~Cat()
@@ -39,14 +39,18 @@ Cat	&Cat::operator=(const Cat &other)
 {
 	std::cout << "Cat assignation operator called" << std::endl;
 	if (this != &other)
+	{
+		if (this->brain)
+			delete this->brain;
+		this->brain = new Brain(*other.brain);
 		this->type = other.type;
+	}
 	return (*this);
 }
 /* ----- */
 
 /* Member function */
-void	Cat::makeSound() const
-{
-	std::cout << "Meow meow" << std::endl;
-}
+Brain*	Cat::getBrain() const { return (this->brain); }
+
+void	Cat::makeSound() const { std::cout << "Meow meow" << std::endl; }
 /* --- */

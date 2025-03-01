@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:30:19 by sadoming          #+#    #+#             */
-/*   Updated: 2025/02/18 17:24:12 by sadoming         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:37:51 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class Dog : public Animal
 		~Dog();
 
 		Dog	&operator=(const Dog &other);
+
+		Brain*	getBrain() const;
 
 		virtual void	makeSound() const;
 
